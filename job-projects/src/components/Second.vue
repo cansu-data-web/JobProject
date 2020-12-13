@@ -3,7 +3,12 @@
     <div class="card">
       <div class="card-header">
         <h5 class="card-title" style="color=red">NAME: {{ second.name }}</h5>
+        <router-link :to="profileLink">
+        {{second.name}} @{{second.username}}
+      </router-link>
       </div>
+
+
       <div class="card-body">
         <p class="card-text">Company: {{ second.company.name }}</p>
         <p class="card-text">Company: {{ second.company.bs }}</p>
@@ -219,7 +224,15 @@
 
 <script>
 export default {
-  props: ["second"],
+ props: {
+    second: { type: Object, required: true }
+  },
+
+   computed: {
+    profileLink() {
+      return `/detay/${this.second.id}`;
+    }
+  },
 
   data() {
     return {
